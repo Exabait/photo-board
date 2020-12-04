@@ -1,38 +1,49 @@
 <div class="wrapper">
-  <div>
-    Photo board
+  <div class="header">
+    Photo Board
     <hr>
   </div>
   <div class="tools">
-    <div>
-      <label> Add image to the board
-        <input [formControl]="imageInput">
-      </label>
+    <div class="image-input">
+      <p class="input-label"> Add image to the board</p>
+      <input [formControl]="imageInput">
+      <button class="main-button" (click)="addImage()">Add</button>
     </div>
     <div>
-      <button>Add</button>
+      <p class="input-label"></p>
+      <button class="transparent-button" (click)="showTags()" [disabled]="isTagShowed">Run tagging API</button>
     </div>
     <div>
-      <button>Run tagging API</button>
-    </div>
-    <div>
-      <select>
-        <option *ngFor="let boardOption of boardsList">{{boardOption.title}}</option>
+      <p class="input-label">Select an existing board</p>
+      <select [formControl]="boardOptions" (change)="changeBoard()">
+        <option *ngFor="let boardOption of boardsList" [selected]="board === boardOption">
+          {{boardOption.title}}
+        </option>
       </select>
     </div>
     <div>
-      <button>Create new board</button>
+      <p class="input-label"></p>
+      <button class="transparent-button" mat-raised-button (click)="openDialog()">Create new catalog</button>
     </div>
   </div>
-  <div class="images">
-
+  <div class="board">
+    <ng-container *ngIf="board && board.photos.length !== 0">
+      <div class="images">
+        <div class="photo" *ngFor="let image of board.photos">
+          <img src="{{image.link}}" alt="{{image.link}}">
+          <ng-container *ngIf="isTagShowed">
+            <span *ngFor="let tag of image.tags">{{tag.tag.en}} </span>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
   </div>
   <div class="bottom">
     <div>
-      <button>Dismiss changes</button>
+      <button class="transparent-button" (click)="dismissChanges()">Dismiss changes</button>
     </div>
     <div>
-      <button>Save Board</button>
+      <button class="main-button" (click)="saveBoard()">Save Board</button>
     </div>
   </div>
 </div>
