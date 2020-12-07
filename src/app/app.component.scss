@@ -1,0 +1,31 @@
+.wrapper {
+  width: 1105px;
+  margin: 75px auto;
+}
+
+.header {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  color: #7F7F7F;
+}
+
+.bottom {
+  display: flex;
+  justify-content: flex-end;
+
+  .transparent-button {
+    margin-right: 40px;
+  }
+}
+
+.input-label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  color: #7F7F7F;
+  line-height: 0;
+}
+
+

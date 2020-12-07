@@ -3,47 +3,21 @@
     Photo Board
     <hr>
   </div>
-  <div class="tools">
-    <div class="image-input">
-      <p class="input-label"> Add image to the board</p>
-      <input [formControl]="imageInput">
-      <button class="main-button" (click)="addImage()">Add</button>
-    </div>
-    <div>
-      <p class="input-label"></p>
-      <button class="transparent-button" (click)="showTags()" [disabled]="isTagShowed">Run tagging API</button>
-    </div>
-    <div>
-      <p class="input-label">Select an existing board</p>
-      <select [formControl]="boardOptions" (change)="changeBoard()">
-        <option *ngFor="let boardOption of boardsList" [selected]="board === boardOption">
-          {{boardOption.title}}
-        </option>
-      </select>
-    </div>
-    <div>
-      <p class="input-label"></p>
-      <button class="transparent-button" mat-raised-button (click)="openDialog()">Create new catalog</button>
-    </div>
-  </div>
-  <div class="board">
-    <ng-container *ngIf="board && board.photos.length !== 0">
-      <div class="images">
-        <div class="photo" *ngFor="let image of board.photos">
-          <img src="{{image.link}}" alt="{{image.link}}">
-          <ng-container *ngIf="isTagShowed">
-            <span *ngFor="let tag of image.tags">{{tag.tag.en}} </span>
-          </ng-container>
-        </div>
-      </div>
-    </ng-container>
-  </div>
+  <app-tools [board]="board" [boardsList]="boardsList"
+             (boardChanges)="changeBoard($event)" (boardsListChanges)="createCatalog($event)"
+             [isTagShowed]="isTagShowed" (isTagShowedChanges)="isTagShowed = $event"
+             (isImageAdding)="isImageAdding = $event">
+  </app-tools>
+  <app-board [board]="board" [isImageAdding]="isImageAdding" [isTagShowed]="isTagShowed"></app-board>
   <div class="bottom">
     <div>
-      <button class="transparent-button" (click)="dismissChanges()">Dismiss changes</button>
+      <button class="transparent-button" (click)="dismissChanges()">Dismiss Changes</button>
     </div>
     <div>
       <button class="main-button" (click)="saveBoard()">Save Board</button>
+      <ng-container *ngIf="isBoardSaved">
+        <p>Board's saved</p>
+      </ng-container>
     </div>
   </div>
 </div>

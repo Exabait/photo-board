@@ -1,0 +1,12 @@
+<mat-dialog-content>
+  <div mat-dialog-content>
+    <p>Board Title</p>
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.boardTitle">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.boardTitle" cdkFocusInitial>Ok</button>
+  </div>
+</mat-dialog-content>

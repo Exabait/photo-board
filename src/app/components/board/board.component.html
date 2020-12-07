@@ -1,0 +1,19 @@
+<ng-container *ngIf="board && board.photos.length !== 0">
+  <div class="images">
+    <div class="photo" *ngFor="let image of board.photos">
+      <img #img src="{{image.link}}" alt="{{image.link}}">
+      <div class="tags" [ngStyle]="setTagsWidth(img) | async">
+        <ng-container *ngIf="isTagShowed">
+          <span *ngFor="let tag of image.tags">{{tag.tag.en}}&nbsp;</span>
+        </ng-container>
+      </div>
+    </div>
+    <ng-container *ngIf="isImageAdding">
+      <mat-spinner></mat-spinner>
+    </ng-container>
+  </div>
+</ng-container>
+<ng-container *ngIf="isImageAdding && board.photos.length === 0">
+  <mat-spinner></mat-spinner>
+</ng-container>
+

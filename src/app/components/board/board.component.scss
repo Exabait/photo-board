@@ -1,0 +1,53 @@
+:host {
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 10px;
+  height: 40vh;
+  max-width: 1105px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .images {
+    margin: 20px auto 0;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .photo {
+    margin-right: 30px;
+    margin-top: 10px;
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+
+    img {
+      height: 85px;
+    }
+
+    .tags {
+      margin-top: 7px;
+
+      display: flex;
+      flex-wrap: wrap;
+
+      cursor: pointer;
+
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 8px;
+      color: #7F7F7F;
+      line-height: 9px;
+
+      span:nth-last-child(-n+6) {
+        visibility: hidden;
+      }
+
+      &:hover span {
+        visibility: visible;
+      }
+    }
+  }
+}
