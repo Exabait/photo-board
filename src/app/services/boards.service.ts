@@ -13,10 +13,10 @@ export class BoardsService {
   constructor(private httpClient: HttpClient) { }
 
   getAllBoards(): Observable<any> {
-    return this.httpClient.get(`${environment.boardsApiUrl}boards`);
+    return this.httpClient.get(`${environment.boardsApiUrl}/boards`);
   }
 
   updateBoard(board: BoardModel): Observable<any> {
-    return this.httpClient.post<BoardModel>(`${environment.boardsApiUrl}boards`, {board});
+    return this.httpClient.post<BoardModel>(`${environment.boardsApiUrl}/boards`, {board});
   }
 }
