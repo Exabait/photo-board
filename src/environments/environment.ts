@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  boardsApiUrl: 'http://localhost:3000/',
+  boardsApiUrl: 'http://mean-photo-board-back.eu-4.evennode.com',
   immagaApiUrl: 'https://api.imagga.com/v2/'
 };
 
