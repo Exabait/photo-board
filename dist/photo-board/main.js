@@ -252,21 +252,18 @@ class ToolsComponent {
         });
         dialogRef.afterClosed().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["takeUntil"])(this.destroy$))
             .subscribe((title) => {
-            debugger;
             if (!this.checkIsNewBoard(title)) {
                 this.addNewBoard(title);
             }
             else {
                 const existedBoard = this.boardsList.find(board => board.title === title);
                 this.boardChanges.emit(existedBoard);
-                debugger;
             }
             this.isTagShowedChanges.emit(false);
         });
     }
     checkIsNewBoard(title) {
-        debugger;
-        return this.boardsList.length === 0 ? !!this.boardsList.find(board => board.title === title) : false;
+        return this.boardsList.length !== 0 ? !!this.boardsList.find(board => board.title === title) : false;
     }
     addNewBoard(title) {
         this.board = {
@@ -276,7 +273,6 @@ class ToolsComponent {
         this.boardsList.push(this.board);
         this.boardsListChanges.emit(this.boardsList);
         this.boardChanges.emit(this.board);
-        debugger;
     }
 }
 ToolsComponent.ɵfac = function ToolsComponent_Factory(t) { return new (t || ToolsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_tag_service__WEBPACK_IMPORTED_MODULE_5__["TagService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_6__["MatDialog"])); };

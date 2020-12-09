@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { filter, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { BoardModel } from '../../models/board.model';
@@ -77,21 +77,18 @@ export class ToolsComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$),
     )
       .subscribe((title: string) => {
-        debugger;
         if (!this.checkIsNewBoard(title)) {
           this.addNewBoard(title);
         } else {
           const existedBoard = this.boardsList.find(board => board.title === title);
           this.boardChanges.emit(existedBoard);
-          debugger;
         }
         this.isTagShowedChanges.emit(false);
       });
   }
 
   private checkIsNewBoard(title: string): boolean {
-    debugger;
-    return this.boardsList.length === 0 ? !!this.boardsList.find(board => board.title === title) : false;
+    return this.boardsList.length !== 0 ? !!this.boardsList.find(board => board.title === title) : false;
   }
 
   private addNewBoard(title: string): void {
@@ -102,7 +99,6 @@ export class ToolsComponent implements OnInit, OnDestroy {
     this.boardsList.push(this.board);
     this.boardsListChanges.emit(this.boardsList);
     this.boardChanges.emit(this.board);
-    debugger;
   }
 
 }
