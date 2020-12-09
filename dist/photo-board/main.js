@@ -113,6 +113,7 @@ class AppComponent {
         this.boardsService.getAllBoards()
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["takeUntil"])(this.destroy$))
             .subscribe(boards => {
+            debugger;
             this.boardsList = boards;
             this.board = this.boardsList[0];
         });
@@ -587,10 +588,14 @@ class BoardsService {
         this.httpClient = httpClient;
     }
     getAllBoards() {
-        return this.httpClient.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].boardsApiUrl}boards`);
+        return this.httpClient.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].boardsApiUrl}/boards`, {
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
     }
     updateBoard(board) {
-        return this.httpClient.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].boardsApiUrl}boards`, { board });
+        return this.httpClient.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].boardsApiUrl}/boards`, { board });
     }
 }
 BoardsService.ɵfac = function BoardsService_Factory(t) { return new (t || BoardsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"])); };
