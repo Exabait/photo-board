@@ -75,21 +75,23 @@ export class ToolsComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$),
-      filter(title => title)
     )
       .subscribe((title: string) => {
-        if (this.checkIsNewBoard(title) || this.boardsList.length === 0) {
+        debugger;
+        if (!this.checkIsNewBoard(title)) {
           this.addNewBoard(title);
         } else {
           const existedBoard = this.boardsList.find(board => board.title === title);
           this.boardChanges.emit(existedBoard);
+          debugger;
         }
         this.isTagShowedChanges.emit(false);
       });
   }
 
   private checkIsNewBoard(title: string): boolean {
-    return !!this.boardsList.find(board => board.title === title);
+    debugger;
+    return this.boardsList.length === 0 ? !!this.boardsList.find(board => board.title === title) : false;
   }
 
   private addNewBoard(title: string): void {
@@ -100,6 +102,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
     this.boardsList.push(this.board);
     this.boardsListChanges.emit(this.boardsList);
     this.boardChanges.emit(this.board);
+    debugger;
   }
 
 }
