@@ -70,7 +70,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
   createCatalog(): void {
     const dialogRef = this.dialog.open(OverviewDialogComponent, {
       width: '250px',
-      data: {boardTitle: this.board.title}
+      data: {title: !!this.board ?  this.board.title : 'New Catalog Title'}
     });
 
     dialogRef.afterClosed().pipe(
@@ -78,7 +78,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
       filter(title => title)
     )
       .subscribe((title: string) => {
-        if (this.checkIsNewBoard(title)) {
+        if (this.checkIsNewBoard(title) || this.boardsList.length === 0) {
           this.addNewBoard(title);
         } else {
           const existedBoard = this.boardsList.find(board => board.title === title);
