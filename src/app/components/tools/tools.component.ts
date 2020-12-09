@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { BoardModel } from '../../models/board.model';
@@ -75,6 +75,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$),
+      filter(title => title)
     )
       .subscribe((title: string) => {
         if (!this.checkIsNewBoard(title)) {

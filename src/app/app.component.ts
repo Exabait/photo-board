@@ -64,7 +64,9 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(boards => {
       this.boardsList = boards;
-      this.board = this.boardsList[0];
+      this.board = !this.board
+        ? this.boardsList[0]
+        : this.boardsList.find(board => board.title === this.board.title) || this.boardsList[0];
     });
   }
 }

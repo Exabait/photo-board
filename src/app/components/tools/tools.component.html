@@ -1,11 +1,11 @@
 <div class="image-input">
   <p class="input-label">&nbsp;Add image to the board</p>
   <input [formControl]="imageInput">
-  <button class="main-button" (click)="addImage()">Add</button>
+  <button class="main-button" (click)="addImage()" [disabled]="!board">Add</button>
 </div>
 <div>
   <p class="input-label"></p>
-  <button class="transparent-button" (click)="showTags()">Run tagging API</button>
+  <button class="transparent-button" (click)="showTags()" [disabled]="!board">Run tagging API</button>
 </div>
 <div>
   <p class="input-label">Select an existing board</p>

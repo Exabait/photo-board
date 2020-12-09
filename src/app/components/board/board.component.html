@@ -16,4 +16,7 @@
 <ng-container *ngIf="isImageAdding && board.photos.length === 0">
   <mat-spinner></mat-spinner>
 </ng-container>
+<ng-container *ngIf="!board">
+  <h1>Please, create new catalog</h1>
+</ng-container>
 
