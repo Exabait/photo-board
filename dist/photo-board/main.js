@@ -113,7 +113,6 @@ class AppComponent {
         this.boardsService.getAllBoards()
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["takeUntil"])(this.destroy$))
             .subscribe(boards => {
-            debugger;
             this.boardsList = boards;
             this.board = this.boardsList[0];
         });

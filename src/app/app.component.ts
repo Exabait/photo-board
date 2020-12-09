@@ -63,7 +63,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.boardsService.getAllBoards()
       .pipe(takeUntil(this.destroy$))
       .subscribe(boards => {
-        debugger
       this.boardsList = boards;
       this.board = this.boardsList[0];
     });
